@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('assets/fonts/Poppins-Bold.ttf'),
+         url('assets/fonts/Poppins-BoldItalic.ttf'),
+         url('assets/fonts/Poppins-ExtraBold.ttf'),
+         url('assets/fonts/Poppins-ExtraBoldItalic.ttf'),
+         url('assets/fonts/Poppins-Italic.ttf'),
+         url('assets/fonts/Poppins-Regular.ttf'),;
+}
+
+/* Global Rules */
+html {
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: hsl(0, 0%, 94%);
+    font-family: 'Poppins', sans-serif;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Age calculator */
+.age-calculator {
+    width: 90%;
+    margin: 200px auto;
+    max-width: 840px;
+    background-color: hsl(0, 0%, 100%);
+    padding: 4em 2em;
+    border-radius: 1em 1em 5em 1em;
+}
+
+.input {
+    display: flex;
+    position: relative;
+}
+
+.input .field {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    max-width: 200px;
+    margin-right: 1em;
+}
+
+.input label {
+    text-transform: uppercase;
+    color: hsl(0, 1%, 44%);
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+.input input {
+    font-size: 1rem;
+    padding: 0.5em 1em 0.5em 0.8em;
+    border-radius: 5px;
+    border: 1px solid hsl(0, 0%, 94%);
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+.input input:hover,
+.input input:focus {
+    border-color: hsl(259, 100%, 65%);
+}
+
+.field.error label {
+    color: hsl(0, 100%, 67%) !important;
+
+}
+
+.field.error input {
+    border-color: hsl(0, 100%, 67%);
+}
+
+.field.error::after {
+    color: hsl(0, 100%, 67%);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.field.empty::after {
+    content: 'This field is required';
+}
+
+.field.invalid.day-field::after {
+    content: 'Must be a valid day';
+}
+
+.field.invalid.month-field::after {
+    content: 'Must be a valid month';
+}
+
+.field.invalid.year-field::after {
+    content: 'Must be a valid year';
+}
+
+.seperator {
+    width: 100%;
+    height: 1px;
+    background-color: hsl(0, 0%, 94%);
+    margin: 3em auto;
+    position: relative;
+}
+
+.btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    border: none;
+    padding: 2em;
+    background-color: hsl(259, 100%, 65%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: hsl(0, 0%, 8%);
+}
+
+.btn svg {
+    width: 25px;
+    height: 25px;
+}
+
+.results {
+    font-size: 3rem;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.results span {
+    color: hsl(259, 100%, 65%);
+}
+
+@media (min-width: 700px) {
+    .btn {
+        right: 0;
+        left: auto;
+        transform: translate(0, -50%);
+    }
+
+    .input input {
+        font-size: 2rem;
+    }
+
+    .results {
+        font-size: 5rem;
+    }
+}
