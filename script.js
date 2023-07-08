@@ -47,16 +47,17 @@ activationBtn.onclick = () => {
 
     // calculate the results if the date is valid
     if (validNumbers) {
-        let birthdate = new Date(year.value, month.value - 1, day.value);
+        let birthYear = year.value;
+        let birthMonth = month.value - 1;
+        let birthDay = day.value;
 
-
-        if (nowDate.getMonth() >= birthdate.getMonth()) {
-            yearsResult.innerText = nowDate.getFullYear() - birthdate.getFullYear();
-            monthsResult.innerText = nowDate.getMonth() - birthdate.getMonth();
+        if (nowDate.getMonth() >= birthMonth) {
+            yearsResult.innerText = nowDate.getFullYear() - birthYear;
+            monthsResult.innerText = nowDate.getMonth() - birthMonth;
         } else {
-            yearsResult.innerText = nowDate.getFullYear() - birthdate.getFullYear() - 1;
-            monthsResult.innerText = 12 - birthdate.getMonth() + nowDate.getMonth();
+            yearsResult.innerText = nowDate.getFullYear() - birthYear - 1;
+            monthsResult.innerText = 12 - birthMonth + nowDate.getMonth();
         }
-        daysResult.innerText = Math.abs(birthdate.getDate() - nowDate.getDate());
+        daysResult.innerText = Math.abs(birthDay - nowDate.getDate());
     }
 }
