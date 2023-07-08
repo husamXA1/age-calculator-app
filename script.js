@@ -2,7 +2,7 @@ let dayField = document.querySelector(".day-field");
 let monthField = document.querySelector(".month-field");
 let yearField = document.querySelector(".year-field");
 let activationBtn = document.querySelector(".age-calculator .btn");
-const monthsDaysLimit = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const monthsDaysLimit = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 let yearsResult = document.querySelector(".results__years span");
 let monthsResult = document.querySelector(".results__months span");
@@ -21,13 +21,17 @@ activationBtn.onclick = () => {
 
     // Check if a field is empty or has invalid number
     let validNumbers = true;
-    if (day.value === '') {
-        dayField.classList.add('error', 'empty');
+
+    if (year.value === '') {
+        yearField.classList.add('error' , 'empty');
         validNumbers = false;
-    } else if (isNaN(day.value) || day.value <= 0 || day.value > 31) {
-        dayField.classList.add('error', 'invalid');
+    } else if (isNaN(year.value) || year.value < 0 || year.value > nowDate.getFullYear()) {
+        yearField.classList.add('error', 'invalid');
         validNumbers = false;
     }
+
+    // Set days limit for febreuary
+    monthsDaysLimit[1] = isLeapYear(year.value) ? 29 : 28;
 
     if (month.value === '') {
         monthField.classList.add('error' , 'empty');
@@ -37,11 +41,11 @@ activationBtn.onclick = () => {
         validNumbers = false;
     }
 
-    if (year.value === '') {
-        yearField.classList.add('error' , 'empty');
+    if (day.value === '') {
+        dayField.classList.add('error', 'empty');
         validNumbers = false;
-    } else if (isNaN(year.value) || year.value < 0 || year.value > nowDate.getFullYear()) {
-        yearField.classList.add('error', 'invalid');
+    } else if (isNaN(day.value) || day.value <= 0 || day.value > monthsDaysLimit[month.value - 1]) {
+        dayField.classList.add('error', 'invalid');
         validNumbers = false;
     }
 
@@ -60,4 +64,8 @@ activationBtn.onclick = () => {
         }
         daysResult.innerText = Math.abs(birthDay - nowDate.getDate());
     }
+}
+
+function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 }
